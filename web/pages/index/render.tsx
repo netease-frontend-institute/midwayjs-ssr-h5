@@ -6,8 +6,9 @@ import Search from '@/components/search'
 import { IData } from '@/interface'
 
 export default (props: SProps) => {
-  console.log("window.STORE_CONTEXT");
   const { state, dispatch } = useContext<IContext<IData>>(window.STORE_CONTEXT)
+  console.log(state);
+  
   return (
     <div>
       <Search></Search>

@@ -22,7 +22,7 @@ export class Index {
   apiDeatilservice: IApiDetailService
 
   @Get('/')
-  @Get('/user')
+  @Get("/user")
   @Get('/detail/:id')
   async handler (): Promise<void> {
     try {
@@ -40,6 +40,6 @@ export class Index {
 
   @Get('/404')
   notFound () {
-     return "<h1>404</h1>"
+     return "<h1>40xxx</h1>"
   }
 }
