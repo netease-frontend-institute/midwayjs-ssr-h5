@@ -17,7 +17,7 @@ export default (props: SProps) => {
   return (
     <div>
         <p className={styles.link} onClick={onEnterUser}>用户（前端请求接口）</p>
-        <p className={styles.link} href="/user">用户（ssr）</p>
+        <a className={styles.link} href="/user">用户（ssr）</a>
       <Search />
       {
         state?.indexData?.data?.[0]?.components ? <div>
