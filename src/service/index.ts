@@ -7,9 +7,9 @@ export class ApiIndexService {
     return await Promise.resolve(mock)
   }
 
-  user () {
-    return {
-      name:'z'
-    }
-  }
+  // user () {
+  //   return {
+  //     name:'z'
+  //   }
+  // }
 }

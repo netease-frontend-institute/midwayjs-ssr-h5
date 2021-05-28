@@ -2,11 +2,12 @@ import { Readable } from 'stream'
 import { Controller, Get, Provide, Inject } from '@midwayjs/decorator'
 import { Context } from 'egg'
 import { render } from 'ssr-core-react'
-import { IApiService, IApiDetailService } from '../interface'
+import { IApiService, IApiDetailService, IUserApiService } from '../interface'
 
 interface IEggContext extends Context {
   apiService: IApiService
-  apiDeatilservice: IApiDetailService
+  apiDeatilservice: IApiDetailService,
+  userApiService: IUserApiService
 }
 
 @Provide()
@@ -21,6 +22,9 @@ export class Index {
   @Inject('ApiDetailService')
   apiDeatilservice: IApiDetailService
 
+  @Inject('UserService')
+  userApiService: IUserApiService
+
   @Get('/')
   @Get("/user")
   @Get('/detail/:id')
@@ -28,9 +32,11 @@ export class Index {
     try {
       this.ctx.apiService = this.apiService
       this.ctx.apiDeatilservice = this.apiDeatilservice
+      this.ctx.userApiService = this.userApiService
       const stream = await render<Readable>(this.ctx, {
         stream: false
       })
+      console.log('this.ctx', this.ctx)
       this.ctx.body = stream
     } catch (error) {
       console.log(error)

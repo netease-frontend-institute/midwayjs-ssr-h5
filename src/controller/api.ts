@@ -1,6 +1,6 @@
 import { Inject, Controller, Provide, Get } from '@midwayjs/decorator'
 import { Context } from 'egg'
-import { IApiService, IApiDetailService } from '../interface'
+import { IApiService, IApiDetailService, IUserApiService } from '../interface'
 
 @Provide()
 @Controller('/api')
@@ -10,6 +10,9 @@ export class Api {
 
   @Inject('ApiService')
   service: IApiService
+
+  @Inject('UserService')
+  userService: IUserApiService
 
   @Inject('ApiDetailService')
   detailService: IApiDetailService
@@ -22,7 +25,7 @@ export class Api {
 
   @Get('/user')
   async getUser () {
-    const data = await this.service.user()
+    const data = await this.userService.user()
     return data
   }
 
