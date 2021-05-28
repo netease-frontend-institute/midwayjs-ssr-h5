@@ -1,15 +1,17 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { SProps, IContext } from 'ssr-types'
-import { IData } from '@/interface'
-
+import { UserData } from '@/interface'
 
 export default (props: SProps) => {
-  const { state, dispatch } = useContext<IContext<IData>>(window.STORE_CONTEXT)
+  const { state, dispatch } = useContext<IContext<UserData>>(window.STORE_CONTEXT)
   console.log(state);
-  
+  if (!state) return;
+  const { userData } = state
+  if (!userData) return null
+  const { name } = userData
   return (
     <div>
-      user
+      姓名：{name}
     </div>
   )
 }
