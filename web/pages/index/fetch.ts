@@ -7,6 +7,7 @@ interface IApiService {
 export default async (ctx: ISSRContext<{
   apiService?: IApiService
 }>) => {
+  // 页面首次加载（刷新页面）走ssr请求，后续路由跳转走前端的fetch请求
   const data = __isBrowser__ ? await (await window.fetch('/api/index')).json() : await ctx.apiService?.index()
 
   return {
